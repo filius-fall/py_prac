@@ -33,15 +33,16 @@ def test():
             m = int(l[0] + k)
         if m > pow(-2,31) and m < pow(2,31)-1:
             print('With in pow')
-            print(m)
+            return m
         elif m < pow(-2,31):
             print('Low power')
-            print(pow(-2,31))
+            return pow(-2,31)
         elif m > pow(2,31) - 1:
             print('High pow')
-            print(pow(2,31) - 1)
+            return pow(2,31) - 1
     elif len(k) == 0:
-        print(0)
+         return 0
 
 
-test()
+result = test()
+print(result)
