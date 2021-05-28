@@ -1,48 +1,44 @@
-def test():
-    s = "21474836406"
-    k = ""
-    l = []
-    for i in s:
-        print(i)
-        try:
-            if int(i):
-                print('Inside Try')
-                k = k + i
-                # print(i)
-                print(k)
-        except:
-            print('Inside Except')
-            if i == "-" or i == "+":
-                l.append(i)
-                print('Detected -')
-            elif i == " ":
-                print("passing")
-                pass
-            else:
-                print("I am breaking")
-                break
+def myAtoi(s):
+        """
+        :type str: str
+        :rtype: int
+        """
 
-    print(k)    
-    if len(k) != 0:
-
-        if len(l) > 1:
+        if (len(s) == 0):
             return 0
-        elif len(l) == 0:
-            m = int(k)
-        elif len(l) == 1:
-            m = int(l[0] + k)
-        if m > pow(-2,31) and m < pow(2,31)-1:
-            print('With in pow')
-            return m
-        elif m < pow(-2,31):
-            print('Low power')
-            return pow(-2,31)
-        elif m > pow(2,31) - 1:
-            print('High pow')
-            return pow(2,31) - 1
-    elif len(k) == 0:
-         return 0
+
+        s = s.strip()
+        try:
+            if(s[0].isdigit()):
+                sign = 1
+            elif(s[0] == '+'):
+                sign = 1
+                s = s[1:]
+            elif(s[0] == '-'):
+                sign = -1
+                s = s[1:]
+            else:
+                return 0
+        except:
+            return 0
+
+        l = len(s)
+        val = "";    i = 0
+        while(i < l and s[i].isdigit()):
+            val = val * 10 + eval(s[i])
+            val += s[i]
+            i += 1
+
+        # val = int(val)
+        val = sign * val
+
+        if(val > 2147483647):
+            return 2147483647
+        elif(val < -2147483648):
+            return -2147483648
+        else:
+            return val
 
 
-result = test()
-print(result)
+k = myAtoi(" ")
+print(k)
